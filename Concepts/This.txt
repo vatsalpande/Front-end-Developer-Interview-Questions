@@ -1,0 +1,23 @@
+This is a tricky keyword in Javascript. Unlike other languages, where this is the current instance
+ in javascript and that confuses many people. However, this binding can be correctly identified with 4 rules
+ One more important thing is all these rules given below will be applicable
+ at the call site. Not anywhere else. Not where the function is defined. Only where the function is called.
+
+ 1) If method is called directly, and this is being used inside the method
+    this is windows object or the global object.
+        function thisMethod() {
+            this.a = 2;
+            this.b = 3;
+        }
+        let thisCalledDirectly = thisMethod();
+        console.info(thisCalledDirectly.a); -> undefined.
+        windows.a -> 2
+   2) If method is called with bind, call or apply then this belongs to the object being binded, called or applied
+   3) If method is called with . notation, then this belongs to object on left side of .
+   4) When the method is called with "new" keyword. When "new" keyword is being used, below things happen
+        a) New object is being created
+        b) New object is "this" linked.
+        c) New Object is __proto__ linked ( More details on this later)
+        d) New object is returned
+
+
